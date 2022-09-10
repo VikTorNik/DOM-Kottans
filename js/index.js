@@ -65,37 +65,24 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     }
 
-
     /* Формую структуру DOM-дерева для поточного товару */
     /* Структура таблична */
     function visibleCurrentProduct(item) {
         let parentDiv = document.createElement("div");
         parentDiv.className = "main__div";
         document.querySelector(".main__div").replaceWith(parentDiv);
-        let currentTable = document.createElement("table");
+        let currentTable = ['<table>'];
         [item].map(elem => {
             for (let [key, value] of Object.entries(elem)) {
                 if (key != "menu") {
-                    let currentRow = document.createElement("tr");
-                    let currentDate = document.createElement("td");                    
-                    let currentNode = document.createTextNode(listBoosterCablesTitle[key]);
-                    currentDate.className = "main__td-title";
-                    currentDate.appendChild(currentNode);
-
-                    currentRow.appendChild(currentDate);
-                    currentNode = document.createTextNode(value);
-                    currentDate = document.createElement("td");
-                    currentDate.className = "main__td-text";
-                    currentDate.appendChild(currentNode);                    
-                    currentRow.appendChild(currentDate);
-                    currentTable.appendChild(currentRow);
+                    currentTable.push(`<tr><td class="main__td-title">${listBoosterCablesTitle[key]}</td><td class="main__td-text">${value}</td></tr>`);
                 }
             }
         }
         )
-        parentDiv.appendChild(currentTable);
+        currentTable.push('</table>');
+        parentDiv.innerHTML = currentTable.join('');
     }
-
 
     /* Формую структуру DOM-дерева для меню */
     function visibleMenu() {
@@ -107,33 +94,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentDiv.innerText = value.menu;
                 /* власна змінна для оновлення виводу при натисканні на клавішу */
                 currentDiv.dataset.typeProduct = key;
-                document.querySelector(".nav__div").appendChild(currentDiv);
+                document.querySelector(".nav__div").append(currentDiv);
             }
         }
         )
     }
 
-
     /* Формую структуру DOM-дерева для футера */
     function visibleFooter() {
         let currentDiv = document.createElement("div");
         currentDiv.innerHTML = '<p>2022 • Document Object Model by <a class="git" href="https://github.com/VikTorNik" target="_blank">VikTorNik</a> </p>';
-        document.querySelector(".footer__div").appendChild(currentDiv);
+        document.querySelector(".footer__div").append(currentDiv);
     }
 
     /* Формую структуру DOM-дерева для хідера */
     function visibleHeader() {
         let currentDiv = document.createElement("div");
         currentDiv.innerHTML = '<p>Стартові пускові дроти прикурювання</p>';
-        document.querySelector(".header__div").appendChild(currentDiv);
+        document.querySelector(".header__div").append(currentDiv);
     }
-
 
     /* Формуємо сторінку */
     visibleHeader()
     visibleMenu();
     visibleFooter();
-
 
     /* Обробляємо події */
     /* Натискання на відповідний пункт меню - оновлюється main */
