@@ -1,118 +1,33 @@
-@charset "UTF-8";
 * {
-  padding: 0;
   margin: 0;
-  border: 0;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-:focus,
-:active {
+*:focus {
   outline: none;
-}
-
-a:focus,
-a:active {
-  outline: none;
-}
-
-nav,
-footer,
-header,
-aside {
-  display: block;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-  font-size: 100%;
-  line-height: 1;
-  font-size: 16px;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-input,
-button,
-textarea {
-  font-family: inherit;
-}
-
-input::-ms-clear {
-  display: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-a,
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-ul li {
-  list-style: none;
-}
-
-img {
-  vertical-align: top;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: 400;
-}
-
-body {
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
 }
 
 .wrapper {
   display: grid;
   grid-template-areas: "header header" "nav main" "footer footer";
-  grid-template-rows: 50px 1fr 50px;
-  grid-template-columns: 300px 1fr;
+  grid-template-rows: 0.8fr 12fr 0.6fr;
+  grid-template-columns: 1fr 4fr;
   height: 100vh;
+  font: 1.6rem Arial, Helvetica, sans-serif;
 }
 
-#pageHeader {
+#user-pageHeader {
   grid-area: header;
 }
 
-#pageNav {
+#user-pageNav {
   grid-area: nav;
 }
 
-#pageMain {
+#user-pageMain {
   grid-area: main;
 }
 
-#pageFooter {
+#user-pageFooter {
   grid-area: footer;
 }
 
@@ -122,18 +37,12 @@ body {
   font-weight: 700;
 }
 
-.nav__div {
-  display: block;
-}
-
 .nav__div-menu {
   cursor: pointer;
-  line-height: 20px;
-  padding: 25px 25px;
-  border-width: 15px 10px 0px 10px;
-  border-color: rgb(6, 61, 63);
-  border-style: solid;
-  background-color: rgb(22, 169, 174);
+  line-height: 1.8rem;
+  padding: 2.5rem;
+  border: 1.6rem rgb(6, 61, 63) solid;
+  background-color: rgb(29, 153, 157);
 }
 
 .nav__div-menu:hover {
@@ -142,49 +51,78 @@ body {
 }
 
 .main {
-  align-items: center;
-  justify-content: center;
   background-color: rgb(243, 221, 161);
-  font-size: 20px;
+  font-size: 1.5rem;
+  padding: 1.4rem;
+}
+
+.main__td-title {
+  background: rgb(242, 212, 102);
+  color: rgb(6, 61, 63);
   font-weight: 600;
-  padding: 15px;
+  padding: 1.4rem;
+  width: 15%;
+  vertical-align: top;
+}
+
+.main__td-text {
+  background: rgb(225, 205, 134);
+  padding: 1.4rem;
+  width: 85%;
+}
+
+.header {
+  text-transform: uppercase;
+  font-size: 2.6rem;
+  color: rgb(110, 251, 240);
 }
 
 .footer,
 .header {
   background-color: rgb(68, 202, 206);
-  height: 50px;
   font-weight: 700;
-  text-shadow: 3px 3px 10px rgb(7, 68, 64);
+  text-shadow: 3px 3px 10px rgb(6, 61, 63);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
-.header {
-  text-transform: uppercase;
-  font-size: 30px;
-  color: rgb(110, 251, 240);
+.git {
+  text-decoration: none;
 }
 
-.git:hover {
-  color: rgb(26, 41, 215);
+.git:hover,
+.git:focus {
+  color: white;
 }
 
-/** Оформлення таблиці */
-table {
-  width: 100%;
+@media (max-width: 480px) {
+  html {
+    font-size: 38%;
+  }
 }
-
-.main__td-title {
-  width: 200px;
-  background: rgb(242, 212, 102);
-  color: rgb(6, 61, 63);
-  padding: 20px;
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 47%;
+  }
 }
-
-.main__td-text {
-  background: rgb(225, 205, 134);
-  padding: 20px;
+@media (min-width: 769px) and (max-width: 992px) {
+  html {
+    font-size: 54%;
+  }
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  html {
+    font-size: 60%;
+  }
+}
+@media (min-width: 1201px) {
+  html {
+    font-size: 70%;
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  html {
+    font-size: 60%;
+  }
 }
