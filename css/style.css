@@ -1,4 +1,5 @@
 * {
+  padding: 0;
   margin: 0;
 }
 
@@ -9,10 +10,10 @@
 .wrapper {
   display: grid;
   grid-template-areas: "header header" "nav main" "footer footer";
-  grid-template-rows: 0.8fr 12fr 0.6fr;
-  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 0.8fr 12fr 0.5fr;
+  grid-template-columns: 1fr 5fr;
   height: 100vh;
-  font: 1.6rem Arial, Helvetica, sans-serif;
+  font: 1.7rem Arial, Helvetica, sans-serif;
 }
 
 #user-pageHeader {
@@ -33,21 +34,39 @@
 
 .navigation {
   background-color: rgb(6, 61, 63);
-  color: rgb(156, 250, 242);
-  font-weight: 700;
 }
 
-.nav__div-menu {
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 1rem;
+  font-size: 1.7rem;
+}
+
+.menu__item {
   cursor: pointer;
-  line-height: 1.8rem;
-  padding: 2.5rem;
-  border: 1.6rem rgb(6, 61, 63) solid;
+  border: 0.8rem rgb(6, 61, 63) solid;
   background-color: rgb(29, 153, 157);
 }
 
-.nav__div-menu:hover {
-  color: rgb(240, 209, 56);
+.menu__title {
+  color: rgb(156, 250, 242);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1.2rem;
+  line-height: 2rem;
+  display: block;
+}
+
+.menu__item:hover,
+.menu__title:focus {
   background-color: rgb(10, 110, 100);
+}
+
+.menu__item:hover .menu__title,
+.menu__title:focus {
+  color: rgb(240, 209, 56);
 }
 
 .main {
@@ -87,7 +106,12 @@
   justify-content: center;
 }
 
-.git {
+.footer {
+  font-size: 1.3rem;
+}
+
+.git,
+.menu__title {
   text-decoration: none;
 }
 
