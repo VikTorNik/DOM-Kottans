@@ -83,21 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     }
 
-    /* Формую структуру DOM-дерева для хідера */
     const showHeader = () => {
         const currentDiv = document.createElement("div");
         currentDiv.innerHTML = "<p>Стартові пускові дроти прикурювання</p>";
         document.querySelector(".header__div").append(currentDiv);
     }
 
-    /* Формую структуру DOM-дерева для меню */
     const showMenu = () => {
         [LIST_DESCRIPTION_CABLES].map(menuItem => {
             for (let [fieldMenu, nameMenu] of Object.entries(menuItem)) {
                 const currentDiv = document.createElement("li");
                 currentDiv.className = "menu__item";
                 currentDiv.innerHTML = `<a class="menu__title" href="#">${nameMenu.name}</a>`;
-                /* власна змінна для оновлення виводу при натисканні на клавішу */
                 currentDiv.dataset.typeProduct = fieldMenu;
                 document.querySelector(".menu").append(currentDiv);
             }
@@ -105,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
         )
     }
 
-    /* Формую структуру DOM-дерева для поточного товару */
     const showCurrentProduct = (currentCable) => {
         const parentDiv = document.createElement("div");
         parentDiv.className = "main__div";
@@ -123,20 +119,16 @@ document.addEventListener("DOMContentLoaded", () => {
         parentDiv.innerHTML = currentTable.join('');
     }
 
-    /* Формую структуру DOM-дерева для футера */
     const showFooter = () => {
         const currentDiv = document.createElement("div");
         currentDiv.innerHTML = '<p>2022 • Document Object Model by <a class="git" href="https://github.com/VikTorNik" target="_blank">VikTorNik</a> </p>';
         document.querySelector(".footer__div").append(currentDiv);
     }
 
-    /* Формуємо сторінку */
     showHeader();
     showMenu();
     showFooter();
 
-    /* Обробляємо події */
-    /* Натискання на відповідний пункт меню - оновлюється main */
     [...document.querySelectorAll(".menu__item")].forEach(selectMenuItem => {
         selectMenuItem.addEventListener("click", ({ currentTarget }) => {
             const currentProduct = currentTarget.dataset.typeProduct;
@@ -144,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /* Імітація першого натискання */
     document.querySelector(".menu__item").click();
 });
 
