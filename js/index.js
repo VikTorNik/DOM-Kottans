@@ -82,63 +82,69 @@ document.addEventListener("DOMContentLoaded", () => {
             price: "3700 грн.",
         },
     }
-    
-    function showHeader() {
+
+    /* Формую структуру DOM-дерева для хідера */
+    const showHeader = () => {
         const currentDiv = document.createElement("div");
         currentDiv.innerHTML = "<p>Стартові пускові дроти прикурювання</p>";
         document.querySelector(".header__div").append(currentDiv);
     }
 
-    function showMenu() {
+    /* Формую структуру DOM-дерева для меню */
+    const showMenu = () => {
         [LIST_DESCRIPTION_CABLES].map(menuItem => {
             for (let [fieldMenu, nameMenu] of Object.entries(menuItem)) {
                 const currentDiv = document.createElement("li");
                 currentDiv.className = "menu__item";
                 currentDiv.innerHTML = `<a class="menu__title" href="#">${nameMenu.name}</a>`;
-                /* own variable to update the output */
+                /* власна змінна для оновлення виводу при натисканні на клавішу */
                 currentDiv.dataset.typeProduct = fieldMenu;
                 document.querySelector(".menu").append(currentDiv);
             }
         }
         )
     }
-    
-    function showCurrentProduct(currentCable) {
+
+    /* Формую структуру DOM-дерева для поточного товару */
+    const showCurrentProduct = (currentCable) => {
         const parentDiv = document.createElement("div");
         parentDiv.className = "main__div";
         document.querySelector(".main__div").replaceWith(parentDiv);
         const currentTable = ["<table>"];
-        [currentCable].map(rowDescription => {
+        [currentCable].forEach(rowDescription => {
             for (let [header, description] of Object.entries(rowDescription)) {
                 if (header != "menu") {
                     currentTable.push(`<tr><td class="main__td-title">${NAME_HEADERS_CABLES[header]}
                     </td><td class="main__td-text">${description}</td></tr>`);
                 }
             }
-        }
-        )
+        })
         currentTable.push("</table>");
         parentDiv.innerHTML = currentTable.join('');
     }
-    
-    function showFooter() {
+
+    /* Формую структуру DOM-дерева для футера */
+    const showFooter = () => {
         const currentDiv = document.createElement("div");
         currentDiv.innerHTML = '<p>2022 • Document Object Model by <a class="git" href="https://github.com/VikTorNik" target="_blank">VikTorNik</a> </p>';
         document.querySelector(".footer__div").append(currentDiv);
     }
-    
+
+    /* Формуємо сторінку */
     showHeader();
     showMenu();
     showFooter();
 
-        [...document.querySelectorAll(".menu__item")].map(selectMenuItem => {
+    /* Обробляємо події */
+    /* Натискання на відповідний пункт меню - оновлюється main */
+    [...document.querySelectorAll(".menu__item")].forEach(selectMenuItem => {
         selectMenuItem.addEventListener("click", ({ currentTarget }) => {
             const currentProduct = currentTarget.dataset.typeProduct;
             showCurrentProduct(LIST_DESCRIPTION_CABLES[currentProduct]);
-
         });
     });
-    
+
+    /* Імітація першого натискання */
     document.querySelector(".menu__item").click();
 });
 
